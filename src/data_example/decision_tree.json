@@ -1,0 +1,436 @@
+{
+  "id": "root",
+  "name": "Начало",
+  "type": "start",
+  "x": 396.5,
+  "y": 60,
+  "children": [
+    {
+      "id": "node_detect",
+      "name": "Мониторинг работы склада",
+      "responsible": "Дежурный охранник",
+      "duration": {
+        "value": 15,
+        "unit": "sec"
+      },
+      "eventName": "Возгорание обнаружено",
+      "parallel": false,
+      "startCondition": {
+        "rules": [
+          {
+            "param": "object.object_1779051672543.isActive",
+            "operator": "==",
+            "value": "true",
+            "combinator": ""
+          }
+        ]
+      },
+      "executionCondition": {
+        "rules": [],
+        "description": ""
+      },
+      "objectActions": [],
+      "type": "action",
+      "status": "pending",
+      "children": [
+        {
+          "id": "node_1779051773013",
+          "name": "Оповещение и эвакуация персонала",
+          "responsible": "Дежурный охранник",
+          "duration": {
+            "value": 4,
+            "unit": "min"
+          },
+          "eventName": "Персонал эвакуирован",
+          "parallel": true,
+          "startCondition": {
+            "rules": []
+          },
+          "executionCondition": {
+            "rules": [
+              {
+                "param": "object.object_1778672349172.isOpen",
+                "operator": "==",
+                "value": "true",
+                "combinator": ""
+              },
+              {
+                "param": "object.object_1778672359872.isOpen",
+                "operator": "==",
+                "value": "true",
+                "combinator": "AND"
+              },
+              {
+                "param": "object.object_1778672340955.isOpen",
+                "operator": "==",
+                "value": "true",
+                "combinator": "AND"
+              }
+            ],
+            "description": ""
+          },
+          "objectActions": [],
+          "condition": {
+            "triggerOnImpact": false,
+            "rules": []
+          },
+          "type": "action",
+          "status": "pending",
+          "children": [
+            {
+              "id": "node_1779052090057",
+              "name": "Оценка пожара: риск распространения",
+              "responsible": "Начальник смены",
+              "duration": {
+                "value": 45,
+                "unit": "sec"
+              },
+              "eventName": "",
+              "parallel": false,
+              "startCondition": {
+                "rules": []
+              },
+              "executionCondition": {
+                "rules": [],
+                "description": ""
+              },
+              "objectActions": [],
+              "condition": {
+                "triggerOnImpact": false,
+                "rules": []
+              },
+              "type": "action",
+              "status": "pending",
+              "children": [
+                {
+                  "id": "node_1779052282008",
+                  "name": "Активация системы автотушения",
+                  "responsible": "Инженер по безопасности",
+                  "duration": {
+                    "value": 2,
+                    "unit": "min"
+                  },
+                  "eventName": "Система автотушения активирована",
+                  "parallel": false,
+                  "startCondition": {
+                    "rules": []
+                  },
+                  "executionCondition": {
+                    "rules": [],
+                    "description": ""
+                  },
+                  "objectActions": [
+                    {
+                      "objectId": "object_1778672149322",
+                      "property": "isActive",
+                      "value": true
+                    },
+                    {
+                      "objectId": "object_1778672164672",
+                      "property": "isActive",
+                      "value": true
+                    },
+                    {
+                      "objectId": "object_1778672385873",
+                      "property": "isActive",
+                      "value": true
+                    },
+                    {
+                      "objectId": "object_1778672373406",
+                      "property": "isActive",
+                      "value": true
+                    }
+                  ],
+                  "condition": {
+                    "triggerOnImpact": false,
+                    "rules": []
+                  },
+                  "type": "action",
+                  "status": "pending",
+                  "children": [
+                    {
+                      "id": "node_1779052518161",
+                      "name": "Локализация пожара",
+                      "responsible": "Инженер по безопасности",
+                      "duration": {
+                        "value": 10,
+                        "unit": "min"
+                      },
+                      "eventName": "Полная ликвидация пожара",
+                      "parallel": true,
+                      "startCondition": {
+                        "rules": []
+                      },
+                      "executionCondition": {
+                        "rules": [],
+                        "description": ""
+                      },
+                      "objectActions": [],
+                      "condition": {
+                        "triggerOnImpact": false,
+                        "rules": []
+                      },
+                      "type": "action",
+                      "status": "pending",
+                      "children": [
+                        {
+                          "id": "node_1779052723979",
+                          "name": "Контроль ликвидации пожара",
+                          "responsible": "Начальник смены",
+                          "duration": {
+                            "value": 11,
+                            "unit": "min"
+                          },
+                          "eventName": "",
+                          "parallel": false,
+                          "startCondition": {
+                            "rules": []
+                          },
+                          "executionCondition": {
+                            "rules": [],
+                            "description": ""
+                          },
+                          "objectActions": [],
+                          "condition": {
+                            "triggerOnImpact": false,
+                            "rules": []
+                          },
+                          "type": "action",
+                          "status": "pending",
+                          "children": [
+                            {
+                              "id": "node_1779053495479",
+                              "name": "Фиксация нанесенного ущерба",
+                              "responsible": "Начальник смены",
+                              "duration": {
+                                "value": 3,
+                                "unit": "min"
+                              },
+                              "eventName": "",
+                              "parallel": false,
+                              "startCondition": {
+                                "rules": []
+                              },
+                              "executionCondition": {
+                                "rules": [],
+                                "description": ""
+                              },
+                              "objectActions": [],
+                              "condition": {
+                                "triggerOnImpact": false,
+                                "rules": []
+                              },
+                              "type": "action",
+                              "status": "pending",
+                              "children": [],
+                              "x": 306.5,
+                              "y": 550
+                            }
+                          ],
+                          "x": 306.5,
+                          "y": 480
+                        }
+                      ],
+                      "x": 306.5,
+                      "y": 410
+                    }
+                  ],
+                  "x": 306.5,
+                  "y": 340
+                },
+                {
+                  "id": "node_1779052868364",
+                  "name": "Подготовка персонала к тушению",
+                  "responsible": "Начальник смены",
+                  "duration": {
+                    "value": 3,
+                    "unit": "min"
+                  },
+                  "eventName": "Персонал получил огнетушители и приблизился к очагу пожара",
+                  "parallel": false,
+                  "startCondition": {
+                    "rules": []
+                  },
+                  "executionCondition": {
+                    "rules": [],
+                    "description": ""
+                  },
+                  "objectActions": [
+                    {
+                      "objectId": "object_1778672403740",
+                      "property": "isActive",
+                      "value": true
+                    },
+                    {
+                      "objectId": "object_1779051051281",
+                      "property": "isActive",
+                      "value": true
+                    },
+                    {
+                      "objectId": "object_1779051072480",
+                      "property": "isActive",
+                      "value": true
+                    },
+                    {
+                      "objectId": "object_1779051087814",
+                      "property": "isActive",
+                      "value": true
+                    },
+                    {
+                      "objectId": "object_1779051101647",
+                      "property": "isActive",
+                      "value": true
+                    }
+                  ],
+                  "condition": {
+                    "triggerOnImpact": false,
+                    "rules": []
+                  },
+                  "type": "action",
+                  "status": "pending",
+                  "children": [
+                    {
+                      "id": "node_1779053071950",
+                      "name": "Тушение пожара огнетушителями",
+                      "responsible": "",
+                      "duration": {
+                        "value": 7,
+                        "unit": "min"
+                      },
+                      "eventName": "Полная ликвидация пожара",
+                      "parallel": true,
+                      "startCondition": {
+                        "rules": [
+                          {
+                            "param": "object.object_1778672340955.isOpen",
+                            "operator": "==",
+                            "value": "true",
+                            "combinator": ""
+                          },
+                          {
+                            "param": "object.object_1778672403740.status",
+                            "operator": "==",
+                            "value": "safe",
+                            "combinator": "AND"
+                          },
+                          {
+                            "param": "object.object_1779051051281.status",
+                            "operator": "==",
+                            "value": "safe",
+                            "combinator": "AND"
+                          },
+                          {
+                            "param": "object.object_1779051072480.status",
+                            "operator": "==",
+                            "value": "safe",
+                            "combinator": "AND"
+                          },
+                          {
+                            "param": "object.object_1779051087814.status",
+                            "operator": "==",
+                            "value": "safe",
+                            "combinator": "AND"
+                          },
+                          {
+                            "param": "object.object_1779051101647.status",
+                            "operator": "==",
+                            "value": "safe",
+                            "combinator": "AND"
+                          }
+                        ]
+                      },
+                      "executionCondition": {
+                        "rules": [],
+                        "description": ""
+                      },
+                      "objectActions": [],
+                      "condition": {
+                        "triggerOnImpact": false,
+                        "rules": []
+                      },
+                      "type": "action",
+                      "status": "pending",
+                      "children": [
+                        {
+                          "id": "node_1779053385727",
+                          "name": "Контроль ликвидации пожара",
+                          "responsible": "Начальник смены",
+                          "duration": {
+                            "value": 9,
+                            "unit": "min"
+                          },
+                          "eventName": "",
+                          "parallel": false,
+                          "startCondition": {
+                            "rules": []
+                          },
+                          "executionCondition": {
+                            "rules": [],
+                            "description": ""
+                          },
+                          "objectActions": [],
+                          "condition": {
+                            "triggerOnImpact": false,
+                            "rules": []
+                          },
+                          "type": "action",
+                          "status": "pending",
+                          "children": [
+                            {
+                              "id": "node_1779053507962",
+                              "name": "Фиксация нанесенного ущерба",
+                              "responsible": "Начальник смены",
+                              "duration": {
+                                "value": 3,
+                                "unit": "min"
+                              },
+                              "eventName": "",
+                              "parallel": false,
+                              "startCondition": {
+                                "rules": []
+                              },
+                              "executionCondition": {
+                                "rules": [],
+                                "description": ""
+                              },
+                              "objectActions": [],
+                              "condition": {
+                                "triggerOnImpact": false,
+                                "rules": []
+                              },
+                              "type": "action",
+                              "status": "pending",
+                              "children": [],
+                              "x": 486.5,
+                              "y": 550
+                            }
+                          ],
+                          "x": 486.5,
+                          "y": 480
+                        }
+                      ],
+                      "x": 486.5,
+                      "y": 410
+                    }
+                  ],
+                  "x": 486.5,
+                  "y": 340
+                }
+              ],
+              "x": 396.5,
+              "y": 270
+            }
+          ],
+          "x": 396.5,
+          "y": 200
+        }
+      ],
+      "y": 130,
+      "x": 396.5,
+      "condition": {
+        "triggerOnImpact": false,
+        "rules": []
+      }
+    }
+  ]
+}
