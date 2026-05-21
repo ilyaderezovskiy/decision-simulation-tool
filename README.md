@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Инструмент имитационного моделирования и визуализации процессов принятия решений в условиях неопределённости
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Позволяет строить план реагирования в виде дерева решений, запускать имитационную модель развития процесса (пожар, наводнение и др.) и в реальном времени наблюдать за распространением опасного фактора на интерактивной карте. По ходу моделирования события из симуляции и действия из плана реагирования автоматически фиксируются в журнале и отображаются на единой временной шкале — с причинно-следственными связями, состояниями объектов и историей всех запусков.
 
-## Available Scripts
+<b> Выполнил: Дерезовский Илья Денисович</b>, группа МСПИН241
 
-In the project directory, you can run:
+## Аннотация
 
-### `npm start`
+Выпускная квалификационная работа посвящена разработке веб-приложения для имитационного моделирования и визуализации процессов принятия решений в условиях неопределённости. Актуальность темы обусловлена необходимостью анализа эффективности планов реагирования на чрезвычайные ситуации, которые характеризуются многовариантностью развития событий, вероятностным характером исходов и взаимосвязанностью параллельных процессов. Существующие программные инструменты, как показал проведённый анализ, либо ориентированы на отдельные аспекты моделирования, либо не обеспечивают наглядного представления причинно-следственных связей между управленческими решениями, возникающими событиями и изменениями состояния объектов. В работе представлен новый метод визуализации процессов принятия решений в условиях неопределённости, объединяющий в едином временном представлении три взаимосвязанных компонента: действия из плана реагирования, события, возникающие в ходе имитационного моделирования, и состояния объектов моделируемой среды. Ключевой особенностью метода является явное отображение причинно-следственных связей. Практическое тестирование системы на сценарии пожара на складе с участием двух специалистов продемонстрировало, что инструмент позволяет выявлять условия, при которых одна стратегия реагирования оказывается предпочтительнее другой, а также анализировать устойчивость планов к изменениям параметров окружающей среды.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Annotation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The final thesis is devoted to the development of a web application for simulation and visualization of decision-making processes in conditions of uncertainty. The relevance of the topic is due to the need to analyze the effectiveness of emergency response plans, which are characterized by the multivariate nature of events, the probabilistic nature of outcomes and the interconnectedness of parallel processes. The existing software tools, as the analysis has shown, are either focused on certain aspects of modeling, or do not provide a visual representation of the cause-and-effect relationships between management decisions, emerging events and changes in the state of facilities. The paper presents a new method for visualizing decision-making processes in conditions of uncertainty, combining three interrelated components in a single time representation: actions from the response plan, events occurring during simulation, and the state of objects in the simulated environment. The key feature of the method is the explicit display of cause-effect relationships. Practical testing of the system in a warehouse fire scenario with the participation of two specialists demonstrated that the tool allows to identify conditions under which one response strategy is preferable to another, as well as analyze the resilience of plans to changes in environmental parameters.
 
-### `npm test`
+## Запуск
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `cd <path-to-decision-simulation-tool-main> && npm install && npm start`
 
-### `npm run build`
+Приложение откроется на http://localhost:3000.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Структура проекта
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+src/
+├── components/
+│   ├── Analytics/
+│   │   ├── EventLogger.js          # Сбор, хранение и экспорт журнала событий в CSV
+│   │   ├── ReportModal.jsx         # Отчёт с ранжированием запусков и весовыми коэффициентами
+│   │   └── ReportModal.css
+│   │
+│   ├── DecisionTree/
+│   │   ├── DecisionTree.jsx        # Интерактивное дерево принятия решений (SVG)
+│   │   └── DecisionTree.css
+│   │
+│   ├── MapCanvas/
+│   │   ├── MapCanvas.jsx           # Пространственная визуализация: карта, объекты, зоны
+│   │   ├── MapCanvas.css
+│   │   ├── simulationEngine.js     # Ядро моделирования: шаг клеточного автомата, события
+│   │   ├── SimulationControls.jsx  # Панель управления запуском моделирования
+│   │   ├── SimulationSetupModal.js # Настройка параметров среды и числа запусков
+│   │   ├── projectManager.js       # Сохранение и загрузка проектов
+│   │   └── processValidator.js     # Валидация пользовательских моделей процессов
+│   │
+│   └── TimelineVisualization/
+│       ├── TimelineVisualization.jsx  # Аналитическая диаграмма: ось времени, действия, объекты
+│       └── TimelineVisualization.css
+│
+├── user_processes/                 # Подключаемые модели процессов (можно добавлять свои)
+│   ├── fireProcess.js              # Модель распространения пожара
+│   ├── floodProcess.js             # Модель наводнения
+│   ├── warehouseFireProcess.js     # Модель пожара на складе с системой тушения
+│   └── processTemplate.js         # Шаблон для создания новой модели процесса
+│
+├── App.js                          # Корневой компонент, синхронизация всех модулей
+├── App.css
+└── App.test.js
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Стек технологий
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Категория | Технология |
+|---|---|
+| UI-фреймворк | React 19.2.4 |
+| Графика и карта | Konva.js, react-konva |
+| Диаграммы | SVG (нативный, без библиотек) |
+| Стили | CSS Variables, CSS Modules |
+| Моделирование | Клеточный автомат (собственная реализация) |
+| Хранение данных | localStorage, in-memory (без внешней БД) |
+| Экспорт данных | CSV (Blob API) |
+| Сборка | Create React App |
+| Язык | JavaScript (ES2020+), JSX |
