@@ -1,0 +1,171 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0f172a;
+  color: #f8fafc;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+/* App.css — глобальные стили модалок */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal-content {
+  background: #16213e;
+  border-radius: 12px;
+  width: 600px;
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 0;
+}
+
+/* Верхняя часть (60% высоты) */
+.top-section {
+  height: 60vh;
+  display: flex;
+  min-height: 0;
+}
+
+/* Левая часть - Дерево решений (50% ширины верхней части) */
+.decision-tree-section {
+  width: 50%;
+  background: #1e293b;
+  border-right: 2px solid #334155;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Правая часть - Карта моделирования (50% ширины верхней части) */
+.map-section {
+  width: 50%;
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Нижняя часть - Аналитика (40% высоты, 100% ширины) */
+.bottom-section {
+  height: 40vh;
+  background: #1e293b;
+  border-top: 2px solid #334155;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Стили для компонента карты внутри map-section */
+.map-canvas-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #0f172a;
+}
+
+.map-stage-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.stage-container {
+  flex: 1;
+  background: #2d3748;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Полосы прокрутки */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Адаптивность */
+@media (max-height: 800px) {
+  .top-section {
+    height: 65vh;
+  }
+  
+  .bottom-section {
+    height: 35vh;
+  }
+}
+
+@media (max-height: 600px) {
+  .top-section {
+    height: 70vh;
+  }
+  
+  .bottom-section {
+    height: 30vh;
+  }
+}
+
+@media (max-width: 1200px) {
+  .top-section {
+    flex-direction: column;
+    height: 70vh;
+  }
+  
+  .decision-tree-section,
+  .map-section {
+    width: 100%;
+    height: 50%;
+  }
+  
+  .decision-tree-section {
+    border-right: none;
+    border-bottom: 2px solid #334155;
+  }
+  
+  .bottom-section {
+    height: 30vh;
+  }
+}
